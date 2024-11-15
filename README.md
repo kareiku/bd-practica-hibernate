@@ -1,5 +1,5 @@
 # Práctica Bases de Datos
-## JDBC
+## Hibernate
 > Grupo: *CITIM21_19*
 > <br>
 > Curso: 2024/25

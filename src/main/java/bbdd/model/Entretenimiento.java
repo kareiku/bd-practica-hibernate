@@ -12,22 +12,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-// TODO Realiza todas las anotaciones necesarias en esta clase para que
-//      que sus instancias sean guardadas en la base de datos utilizando
-//      Hibernate. Respecta las restricciones de modelado impuestas en el
-//      enunciado de la práctica. No es necesario modificar el código de esta
-//      clase, únicamente debes hacer las anotaciones que consideres
-//      necesarías.
+@Entity
+@Table(name = "entretenimientos")
 public class Entretenimiento {
-
+    @Id
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    private Set<Gasto> gastos = new HashSet<>();
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private final Set<Gasto> gastos = new HashSet<>();
 
     public Entretenimiento() {
-        // requerido por Hibernate
     }
 
     public Entretenimiento(String nombre) {
@@ -38,12 +36,11 @@ public class Entretenimiento {
         return id;
     }
 
-    public String getNombre() { 
-        return nombre; 
-    }
-    
-    public Set<Gasto> getGastos() { 
-        return gastos; 
+    public String getNombre() {
+        return nombre;
     }
 
+    public Set<Gasto> getGastos() {
+        return gastos;
+    }
 }

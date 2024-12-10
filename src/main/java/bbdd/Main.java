@@ -21,7 +21,6 @@ import bbdd.model.Gasto;
 
 public class Main {
     public static void main(String[] args) {
-
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure()
                 .build();

@@ -10,25 +10,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-// TODO Realiza todas las anotaciones necesarias en esta clase para que
-//      que sus instancias sean guardadas en la base de datos utilizando
-//      Hibernate. Respecta las restricciones de modelado impuestas en el
-//      enunciado de la práctica. No es necesario modificar el código de esta
-//      clase, únicamente debes hacer las anotaciones que consideres
-//      necesarías.
+@Entity
+@Table(name = "gastos")
 public class Gasto {
-
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(table = "pasajeros", name = "id", nullable = false)
     private Pasajero pasajero;
 
+    @ManyToOne
+    @JoinColumn(table = "entretenimientos", name = "id", nullable = false)
     private Entretenimiento entretenimiento;
 
+    @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
     public Gasto() {
-        // requerido por Hibernate
     }
 
     public Gasto(Pasajero pasajero, Entretenimiento entretenimiento, Integer cantidad) {
@@ -37,20 +38,19 @@ public class Gasto {
         this.cantidad = cantidad;
     }
 
-    public Long getId() { 
+    public Long getId() {
         return id;
     }
-    
-    public Pasajero getPasajero() { 
-        return pasajero; 
+
+    public Pasajero getPasajero() {
+        return pasajero;
     }
 
-    public Entretenimiento getEntretenimiento() { 
-        return entretenimiento; 
+    public Entretenimiento getEntretenimiento() {
+        return entretenimiento;
     }
 
-    public Integer getCantidad() { 
-        return cantidad; 
+    public Integer getCantidad() {
+        return cantidad;
     }
-    
 }

@@ -17,6 +17,8 @@
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
+        <property name="hibernate.default_schema">titanic_spaceship</property>
+
         <mapping class="bbdd.model.Pasajero"/>
         <mapping class="bbdd.model.Gasto"/>
         <mapping class="bbdd.model.Entretenimiento"/>

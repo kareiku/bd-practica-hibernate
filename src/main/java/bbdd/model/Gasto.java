@@ -2,7 +2,6 @@ package bbdd.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,11 +18,11 @@ public class Gasto {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(table = "pasajeros", name = "id", nullable = false)
+    @JoinColumn(name = "pasajeros", nullable = false)
     private Pasajero pasajero;
 
     @ManyToOne
-    @JoinColumn(table = "entretenimientos", name = "id", nullable = false)
+    @JoinColumn(name = "entretenimientos", nullable = false)
     private Entretenimiento entretenimiento;
 
     @Column(name = "cantidad", nullable = false)

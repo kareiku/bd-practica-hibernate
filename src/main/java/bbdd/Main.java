@@ -1,9 +1,7 @@
 package bbdd;
 
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -21,26 +19,39 @@ import bbdd.model.Gasto;
 
 public class Main {
     public static void main(String[] args) {
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure()
-                .build();
-
-        SessionFactory sessionFactory = new MetadataSources(registry)
-                .buildMetadata()
-                .buildSessionFactory();
-
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
-        // TODO Crear un nuevo pasajero llamado "Din Djarin" y un nuevo entretenimiento
-        //      llamado "Bounty Hunting" y guardarlos en la base de datos. Añade un gasto de
-        //      100 a "Din Djarin" para "Bounty Hunting".
+        /* ========================= Ej 4a ========================== */
+        {
+            Pasajero pasajero = new Pasajero("Din Djarin");
+            Entretenimiento entretenimiento = new Entretenimiento("Bounty Hunting");
+            Gasto gasto = new Gasto(pasajero, entretenimiento, 100);
+            session.beginTransaction();
+            session.saveOrUpdate(pasajero);
+            session.saveOrUpdate(entretenimiento);
+            session.saveOrUpdate(gasto);
+            session.getTransaction().commit();
+        }
 
-
-        // TODO Leer el fichero CSV gastos.csv que se encuentra en el directorio "resources" y
-        //      recorrerlo usando CSVParser para crear los pasajeros, entretenimientos y gastos que
-        //      en él se encuentran. Dichos gastos deberán ser asignados al pasajero/a y al entretenimiento
-        //      correspondientes. Se deben guardar todos estos datos en la base de datos.
-
+        /* ========================= Ej 4b ========================== */
+        {
+            try (CSVParser parser = new CSVParser(new FileReader("../../resources/gastos.csv"), CSVFormat.DEFAULT.withHeader())) {
+                session.beginTransaction();
+                for (CSVRecord record : parser) {
+                    Pasajero pasajero = new Pasajero(record.get(0));
+                    Entretenimiento entretenimiento = new Entretenimiento(record.get(1));
+                    Gasto gasto = new Gasto(pasajero, entretenimiento, Integer.parseInt(record.get(2)));
+                    session.saveOrUpdate(pasajero);
+                    session.saveOrUpdate(entretenimiento);
+                    session.saveOrUpdate(gasto);
+                }
+                session.getTransaction().commit();
+            } catch (IOException ex) {
+                assert false;
+            }
+        }
 
         session.close();
     }

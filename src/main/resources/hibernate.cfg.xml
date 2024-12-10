@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/TitanicDB</property>
-        <property name="connection.username">admin</property>
-        <property name="connection.password">patata</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"/>
 
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
@@ -15,9 +15,9 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="show_sql">false</property>
 
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
-        <property name="hibernate.default_schema">titanic_spaceship</property>
+        <!-- <property name="hibernate.default_schema">titanic_spaceship</property> -->
 
         <mapping class="bbdd.model.Pasajero"/>
         <mapping class="bbdd.model.Gasto"/>

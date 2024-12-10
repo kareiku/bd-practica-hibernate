@@ -9,7 +9,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <dependencies>
-
     <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -27,11 +26,5 @@
             <artifactId>commons-csv</artifactId>
             <version>1.7</version>
         </dependency>
-
-
-
-  
   </dependencies>
-
-    
 </project>

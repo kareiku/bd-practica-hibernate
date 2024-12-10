@@ -1,22 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!--
-  ~ Hibernate, Relational Persistence for Idiomatic Java
-  ~
-  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
-  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
-  -->
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-
 <hibernate-configuration>
-
     <session-factory>
-
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/bbdd_prac2425_hibernate</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/TitanicDB</property>
+        <property name="connection.username">admin</property>
+        <property name="connection.password">patata</property>
 
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
@@ -29,7 +20,5 @@
         <mapping class="bbdd.model.Pasajero"/>
         <mapping class="bbdd.model.Gasto"/>
         <mapping class="bbdd.model.Entretenimiento"/>
-
     </session-factory>
-
 </hibernate-configuration>

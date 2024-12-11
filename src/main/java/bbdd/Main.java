@@ -1,5 +1,6 @@
 package bbdd;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -37,7 +38,7 @@ public class Main {
 
         /* ========================= Ej 4b ========================== */
         {
-            try (CSVParser parser = new CSVParser(new FileReader("/home/kare/IdeaProjects/bd-practica-hibernate/src/main/resources/gastos.csv"), CSVFormat.DEFAULT.withHeader())) {
+            try (CSVParser parser = new CSVParser(new FileReader(new File("").getAbsolutePath() + "/src/main/resources/gastos.csv"), CSVFormat.DEFAULT.withHeader())) {
                 session.beginTransaction();
                 for (CSVRecord record : parser) {
                     Pasajero pasajero = new Pasajero(record.get(0));
@@ -49,6 +50,7 @@ public class Main {
                 }
                 session.getTransaction().commit();
             } catch (IOException ignore) {
+                System.out.println(ignore.getMessage());
             }
         }
 

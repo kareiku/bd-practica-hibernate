@@ -24,8 +24,12 @@ public class Main {
         SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         Session session = sessionFactory.openSession();
 
+        Pasajero pasajero = session.load(Pasajero.class, 1L);
+        /*session.beginTransaction();
+        session.delete(pasajero);
+        session.getTransaction().commit();*/
         /* ========================= Ej 4a ========================== */
-        {
+        /*{
             Pasajero pasajero = new Pasajero("Din Djarin");
             Entretenimiento entretenimiento = new Entretenimiento("Bounty Hunting");
             Gasto gasto = new Gasto(pasajero, entretenimiento, 100);
@@ -34,10 +38,10 @@ public class Main {
             session.saveOrUpdate(entretenimiento);
             session.saveOrUpdate(gasto);
             session.getTransaction().commit();
-        }
+        }*/
 
         /* ========================= Ej 4b ========================== */
-        {
+        /*{
             try (CSVParser parser = new CSVParser(new FileReader(new File("").getAbsolutePath() + "/src/main/resources/gastos.csv"), CSVFormat.DEFAULT.withHeader())) {
                 session.beginTransaction();
                 for (CSVRecord record : parser) {
@@ -51,7 +55,7 @@ public class Main {
                 session.getTransaction().commit();
             } catch (IOException ignore) {
             }
-        }
+        }*/
 
         session.close();
     }

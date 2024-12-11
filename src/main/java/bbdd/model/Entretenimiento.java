@@ -16,11 +16,11 @@ import javax.persistence.Table;
 @Table(name = "entretenimientos")
 public class Entretenimiento {
     @Id
-    @Column(name = "idE")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombreE", nullable = false, length = 50)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)

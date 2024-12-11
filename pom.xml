@@ -7,6 +7,11 @@
     <groupId>bbdd</groupId>
     <artifactId>bd-practica-hibernate</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Práctica de Bases de Datos: Hibernate</name>
+    <description>CITIM21, 2024/25</description>
+    <url>https://github.com/kareiku/bd-practica-hibernate</url>
 
     <dependencies>
         <dependency>

@@ -18,11 +18,11 @@ public class Gasto {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pasajeros", nullable = false)
+    @JoinColumn(name = "id_pasajero", nullable = false)
     private Pasajero pasajero;
 
     @ManyToOne
-    @JoinColumn(name = "entretenimientos", nullable = false)
+    @JoinColumn(name = "id_entretenimiento", nullable = false)
     private Entretenimiento entretenimiento;
 
     @Column(name = "cantidad", nullable = false)

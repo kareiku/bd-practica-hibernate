@@ -50,7 +50,6 @@ public class Main {
                 }
                 session.getTransaction().commit();
             } catch (IOException ignore) {
-                System.out.println(ignore.getMessage());
             }
         }
 

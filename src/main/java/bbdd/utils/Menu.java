@@ -1,24 +1,29 @@
 package bbdd.utils;
 
-import bbdd.utils.commands.Command;
-import bbdd.utils.commands.Execute4aCommand;
-import bbdd.utils.commands.Execute4bCommand;
+import bbdd.utils.options.*;
 import org.hibernate.Session;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CLI {
+public class Menu {
     private final Session session;
-    private final Map<Character, Command> commands;
+    private final Map<Character, Option> commands;
 
-    public CLI(Session session) {
+    public Menu(Session session) {
         this.session = session;
         this.commands = new HashMap<>();
-        Command[] commands = {new Execute4aCommand(), new Execute4bCommand()};
-        for (int i = 1; i < commands.length; i++) {
-            this.commands.put(Character.forDigit(i, 10), commands[i]);
+        Option[] options = {
+                new Exercise4aOption(),
+                new Exercise4bOption(),
+                new DeletePasajeroOption(),
+                new DeleteEntretenimientoOption(),
+                new UpdatePasajeroOption(),
+                new UpdateEntretenimientoOption()
+        };
+        for (int i = 1; i < options.length; i++) {
+            this.commands.put(Character.forDigit(i, 10), options[i]);
         }
     }
 
@@ -29,7 +34,7 @@ public class CLI {
             System.out.println(Message.MENU);
             System.out.print(Message.PROMT);
             option = new Scanner(System.in).next().charAt(0);
-            Command command = this.commands.get(option);
+            Option command = this.commands.get(option);
             if (command != null) {
                 command.execute(this.session);
             } else {
@@ -40,14 +45,13 @@ public class CLI {
 
     private enum Message {
         WELCOME("Bienvenido al menú de la práctica de Hibernate."),
-        MENU("Opciones:" +
-                "1. Ejecutar 4a" +
+        MENU("1. Ejecutar 4a" +
                 "2. Ejecutar 4b" +
                 "3. Borrar el pasajero con id=8" +
                 "4. Borrar el entretenimiento con id=4" +
                 "5. Actualizar el pasajero con id=7 a \"Mortarion\"" +
                 "6. Actualizar el entretenimiento con id=9 a \"Starfruit cultivation\""),
-        PROMT("> "),
+        PROMT("Introduzca una opción: "),
         NOT_FOUND_ERROR("Error: Opción inválida.");
 
         private final String message;

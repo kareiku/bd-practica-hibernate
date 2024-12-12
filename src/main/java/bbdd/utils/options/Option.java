@@ -1,7 +1,7 @@
-package bbdd.utils.commands;
+package bbdd.utils.options;
 
 import org.hibernate.Session;
 
-public interface Command {
+public interface Option {
     void execute(Session session);
 }

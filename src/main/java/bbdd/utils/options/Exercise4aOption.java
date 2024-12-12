@@ -1,11 +1,11 @@
-package bbdd.utils.commands;
+package bbdd.utils.options;
 
 import bbdd.model.Entretenimiento;
 import bbdd.model.Gasto;
 import bbdd.model.Pasajero;
 import org.hibernate.Session;
 
-public class Execute4aCommand implements Command {
+public class Exercise4aOption implements Option {
     public void execute(Session session) {
         Pasajero pasajero = new Pasajero("Din Djarin");
         Entretenimiento entretenimiento = new Entretenimiento("Bounty Hunting");

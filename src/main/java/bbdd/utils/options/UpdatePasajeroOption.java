@@ -1,4 +1,4 @@
-package bbdd.utils.commands;
+package bbdd.utils.options;
 
 /**
  * Pasajero pasajero = session.load(Pasajero.class, 1L);
@@ -6,5 +6,6 @@ package bbdd.utils.commands;
  * session.delete(pasajero);
  * session.getTransaction().commit();
  */
-public class UpdatePasajeroCommand {
+public class UpdatePasajeroOption implements Option {
+    // TODO
 }

@@ -1,4 +1,4 @@
-package bbdd.utils.commands;
+package bbdd.utils.options;
 
 import bbdd.model.Entretenimiento;
 import bbdd.model.Gasto;
@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Execute4bCommand implements Command {
+public class Exercise4bOption implements Option {
     public void execute(Session session) {
         try (CSVParser parser = new CSVParser(new FileReader(new File("").getAbsolutePath() + "/src/main/resources/gastos.csv"), CSVFormat.DEFAULT.withHeader())) {
             session.beginTransaction();

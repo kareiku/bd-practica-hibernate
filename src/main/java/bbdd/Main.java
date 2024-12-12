@@ -1,6 +1,6 @@
 package bbdd;
 
-import bbdd.utils.CLI;
+import bbdd.utils.Menu;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +13,7 @@ public class Main {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         SessionFactory factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         Session session = factory.openSession();
-        new CLI(session).start();
+        new Menu(session).start();
         session.close();
     }
 }

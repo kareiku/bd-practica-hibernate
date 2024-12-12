@@ -28,17 +28,28 @@ public class Menu {
     }
 
     public void start() {
+        System.out.println();
         System.out.println(Message.WELCOME);
         int input;
         do {
+            System.out.println();
             System.out.println(Message.MENU);
             System.out.print(Message.PROMT);
             input = new Scanner(System.in).nextInt();
             Option option = this.commands.get(input);
             if (option != null) {
-                option.execute(this.session);
+                try {
+                    option.execute(this.session);
+                    System.out.println();
+                    System.out.println(Message.OK_EXECUTION);
+                } catch (Exception ex) {
+                    assert false : ex.getMessage();
+                    System.out.println();
+                    System.out.println(Message.BAD_EXECUTION);
+                }
             } else {
                 if (input != 0) {
+                    System.out.println();
                     System.out.println(Message.NOT_FOUND_ERROR);
                 }
             }
@@ -55,7 +66,9 @@ public class Menu {
                 "5. Actualizar el pasajero con id=7 a \"Mortarion\"\n" +
                 "6. Actualizar el entretenimiento con id=9 a \"Starfruit farming\"\n"),
         PROMT("Introduzca una opción: "),
-        NOT_FOUND_ERROR("Error: Opción inválida.");
+        NOT_FOUND_ERROR("Error: Opción inválida."),
+        OK_EXECUTION("Ejecución correcta."),
+        BAD_EXECUTION("Ejecución errónea.");
 
         private final String message;
 

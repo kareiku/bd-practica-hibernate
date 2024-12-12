@@ -45,10 +45,7 @@ public class Pasajero {
         return gastos;
     }
 
-    public void setNombre(String nombreN){
-        this.nombre = nombreN;
-    }
-    public void setId(Long idN){
-        this.id = idN;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

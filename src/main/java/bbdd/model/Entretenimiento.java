@@ -44,4 +44,8 @@ public class Entretenimiento {
     public Set<Gasto> getGastos() {
         return gastos;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

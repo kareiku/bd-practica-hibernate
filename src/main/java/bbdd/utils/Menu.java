@@ -50,7 +50,7 @@ public class Menu {
                 "3. Borrar el pasajero con id=8" +
                 "4. Borrar el entretenimiento con id=4" +
                 "5. Actualizar el pasajero con id=7 a \"Mortarion\"" +
-                "6. Actualizar el entretenimiento con id=9 a \"Starfruit cultivation\""),
+                "6. Actualizar el entretenimiento con id=9 a \"Starfruit farming\""),
         PROMT("Introduzca una opción: "),
         NOT_FOUND_ERROR("Error: Opción inválida.");
 

@@ -1,11 +1,14 @@
 package bbdd.utils.options;
 
-/**
- * Pasajero pasajero = session.load(Pasajero.class, 1L);
- * session.beginTransaction();
- * session.delete(pasajero);
- * session.getTransaction().commit();
- */
+import bbdd.model.Pasajero;
+import org.hibernate.Session;
+
 public class UpdatePasajeroOption implements Option {
-    // TODO
+    public void execute(Session session) {
+        Pasajero pasajero = session.load(Pasajero.class, 7L);
+        pasajero.setNombre("Mortarion");
+        session.beginTransaction();
+        session.update(pasajero);
+        session.getTransaction().commit();
+    }
 }

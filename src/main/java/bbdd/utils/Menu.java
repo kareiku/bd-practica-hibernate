@@ -28,22 +28,34 @@ public class Menu {
     }
 
     public void start() {
+        int input = -1;
         System.out.println();
         System.out.println(Message.WELCOME);
-        int input;
         do {
-            System.out.println();
-            System.out.println(Message.MENU);
-            System.out.print(Message.PROMT);
-            input = new Scanner(System.in).nextInt();
-            Option option = this.commands.get(input);
-            if (option != null) {
-                option.tryExecution(this.factory);
-            } else {
-                if (input != 0) {
-                    System.out.println();
-                    System.out.println(Message.NOT_FOUND_ERROR);
+            try {
+                System.out.println();
+                System.out.println(Message.MENU);
+                System.out.print(Message.PROMT);
+                input = new Scanner(System.in).nextInt();
+                Option option;
+                if (input > 0) {
+                    option = this.commands.get(input);
+                    if (option != null) {
+                        option.tryExecution(this.factory);
+                    } else {
+                        System.out.println();
+                        System.out.println(Message.NOT_FOUND_ERROR);
+                    }
+                } else {
+                    if (input != 0) {
+                        System.out.println();
+                        System.out.println(Message.INVALID_INPUT);
+                    }
                 }
+            } catch (Exception ex) {
+                assert false : ex.getMessage();
+                System.out.println();
+                System.out.println(Message.INVALID_INPUT);
             }
         } while (input != 0);
     }
@@ -51,6 +63,7 @@ public class Menu {
     private enum Message {
         WELCOME("Bienvenido al menú de la práctica de Hibernate."),
         MENU("Opciones:\n" +
+                "0. Salir\n" +
                 "1. Ejecutar 4a\n" +
                 "2. Ejecutar 4b\n" +
                 "3. Borrar el pasajero con id=8\n" +
@@ -58,6 +71,7 @@ public class Menu {
                 "5. Actualizar el pasajero con id=7 a \"Mortarion\"\n" +
                 "6. Actualizar el entretenimiento con id=9 a \"Starfruit farming\"\n"),
         PROMT("Introduzca una opción: "),
+        INVALID_INPUT("Error: La opción introducida no está comprendida en el rango de números enteros válido."),
         NOT_FOUND_ERROR("Error: Opción no encontrada.");
 
         private final String message;

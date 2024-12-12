@@ -45,12 +45,13 @@ public class Menu {
 
     private enum Message {
         WELCOME("Bienvenido al menú de la práctica de Hibernate."),
-        MENU("1. Ejecutar 4a" +
-                "2. Ejecutar 4b" +
-                "3. Borrar el pasajero con id=8" +
-                "4. Borrar el entretenimiento con id=4" +
-                "5. Actualizar el pasajero con id=7 a \"Mortarion\"" +
-                "6. Actualizar el entretenimiento con id=9 a \"Starfruit farming\""),
+        MENU("Opciones:\n" +
+                "1. Ejecutar 4a\n" +
+                "2. Ejecutar 4b\n" +
+                "3. Borrar el pasajero con id=8\n" +
+                "4. Borrar el entretenimiento con id=4\n" +
+                "5. Actualizar el pasajero con id=7 a \"Mortarion\"\n" +
+                "6. Actualizar el entretenimiento con id=9 a \"Starfruit farming\"\n"),
         PROMT("Introduzca una opción: "),
         NOT_FOUND_ERROR("Error: Opción inválida.");
 

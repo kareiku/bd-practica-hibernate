@@ -1,18 +1,18 @@
 package bbdd.utils;
 
 import bbdd.utils.options.*;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
-    private final Session session;
+    private final SessionFactory factory;
     private final Map<Integer, Option> commands;
 
-    public Menu(Session session) {
-        this.session = session;
+    public Menu(SessionFactory factory) {
+        this.factory = factory;
         this.commands = new HashMap<>();
         Option[] options = {
                 new Exercise4aOption(),
@@ -38,15 +38,7 @@ public class Menu {
             input = new Scanner(System.in).nextInt();
             Option option = this.commands.get(input);
             if (option != null) {
-                try {
-                    option.execute(this.session);
-                    System.out.println();
-                    System.out.println(Message.OK_EXECUTION);
-                } catch (Exception ex) {
-                    assert false : ex.getMessage();
-                    System.out.println();
-                    System.out.println(Message.BAD_EXECUTION);
-                }
+                option.tryExecution(this.factory);
             } else {
                 if (input != 0) {
                     System.out.println();
@@ -66,9 +58,7 @@ public class Menu {
                 "5. Actualizar el pasajero con id=7 a \"Mortarion\"\n" +
                 "6. Actualizar el entretenimiento con id=9 a \"Starfruit farming\"\n"),
         PROMT("Introduzca una opción: "),
-        NOT_FOUND_ERROR("Error: Opción inválida."),
-        OK_EXECUTION("Ejecución correcta."),
-        BAD_EXECUTION("Ejecución errónea.");
+        NOT_FOUND_ERROR("Error: Opción no encontrada.");
 
         private final String message;
 

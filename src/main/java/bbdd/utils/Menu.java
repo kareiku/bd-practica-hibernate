@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Menu {
     private final Session session;
-    private final Map<Character, Option> commands;
+    private final Map<Integer, Option> commands;
 
     public Menu(Session session) {
         this.session = session;
@@ -22,25 +22,27 @@ public class Menu {
                 new UpdatePasajeroOption(),
                 new UpdateEntretenimientoOption()
         };
-        for (int i = 1; i < options.length; i++) {
-            this.commands.put(Character.forDigit(i, 10), options[i]);
+        for (int i = 1; i <= options.length; i++) {
+            this.commands.put(i, options[i - 1]);
         }
     }
 
     public void start() {
         System.out.println(Message.WELCOME);
-        char option;
+        int input;
         do {
             System.out.println(Message.MENU);
             System.out.print(Message.PROMT);
-            option = new Scanner(System.in).next().charAt(0);
-            Option command = this.commands.get(option);
-            if (command != null) {
-                command.execute(this.session);
+            input = new Scanner(System.in).nextInt();
+            Option option = this.commands.get(input);
+            if (option != null) {
+                option.execute(this.session);
             } else {
-                System.out.println(Message.NOT_FOUND_ERROR);
+                if (input != 0) {
+                    System.out.println(Message.NOT_FOUND_ERROR);
+                }
             }
-        } while (option != '0');
+        } while (input != 0);
     }
 
     private enum Message {

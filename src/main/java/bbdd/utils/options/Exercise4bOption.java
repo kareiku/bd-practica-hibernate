@@ -12,19 +12,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Exercise4bOption implements Option {
+public class Exercise4bOption extends Option {
     public void execute(Session session) {
         try (CSVParser parser = new CSVParser(new FileReader(new File("").getAbsolutePath() + "/src/main/resources/gastos.csv"), CSVFormat.DEFAULT.withHeader())) {
-            session.beginTransaction();
             for (CSVRecord record : parser) {
                 Pasajero pasajero = new Pasajero(record.get(0));
                 Entretenimiento entretenimiento = new Entretenimiento(record.get(1));
                 Gasto gasto = new Gasto(pasajero, entretenimiento, Integer.parseInt(record.get(2)));
-                session.saveOrUpdate(pasajero);
-                session.saveOrUpdate(entretenimiento);
-                session.saveOrUpdate(gasto);
+                session.save(pasajero);
+                session.save(entretenimiento);
+                session.save(gasto);
             }
-            session.getTransaction().commit();
         } catch (IOException ex) {
             assert false : ex.getMessage();
         }

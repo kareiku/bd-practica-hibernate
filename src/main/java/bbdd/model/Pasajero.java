@@ -23,7 +23,7 @@ public class Pasajero {
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pasajero", cascade = CascadeType.ALL)
     private final Set<Gasto> gastos = new HashSet<>();
 
     public Pasajero() {

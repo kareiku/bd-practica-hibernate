@@ -1,6 +1,5 @@
 DROP SCHEMA IF EXISTS `titanic_spaceship`;
-
-CREATE SCHEMA `titanic_spaceship`;
+CREATE SCHEMA IF NOT EXISTS `titanic_spaceship`;
 
 SELECT * FROM `titanic_spaceship`.`pasajeros`;
 SELECT * FROM `titanic_spaceship`.`entretenimientos`;
